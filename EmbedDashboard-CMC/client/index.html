@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Looker</title>
+</head>
+
+<body style="margin:0px;padding:0px;overflow:hidden;height:100%">
+    <script>
+        fetch('/dashboard')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                loadFrame(data);
+            });
+
+        function loadFrame(data) {
+            var ifrm = document.createElement("iframe");
+            ifrm.setAttribute("src", data.url);
+            ifrm.width = "100%";
+            ifrm.height = "100%";
+            ifrm.frameBorder = 0;
+            ifrm.style.width = "100%";
+            ifrm.style.height = "100%";
+            ifrm.style.position = "absolute";
+            document.body.appendChild(ifrm);
+        }
+    </script>
+</body>
+
+</html>
